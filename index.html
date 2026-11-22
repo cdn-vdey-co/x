@@ -57,7 +57,8 @@
       gap: 0;
     }
     .content {
-      width: min(100%, 440px);
+      width: min(100%, 560px);
+      transform: translateY(-12px);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -75,17 +76,27 @@
       display: block;
       width: 100%;
       height: auto;
-      max-height: 39svh;
+      max-height: 62svh;
       object-fit: contain;
       background: #000;
     }
+    video::-webkit-media-controls-fullscreen-button { display: none !important; }
+    video::-webkit-media-controls-overflow-button { display: none !important; }
     .hint {
       margin: 10px 0 7px;
       color: #c7c7c7;
-      font-size: 10px;
+      font-size: 12px;
       line-height: 1.3;
       letter-spacing: .15px;
       text-align: center;
+    }
+    .hint .point-down {
+      display: inline-block;
+      animation: point-bob .42s ease-in-out infinite alternate;
+    }
+    @keyframes point-bob {
+      from { transform: translateY(-3px); }
+      to { transform: translateY(3px); }
     }
     .telegram-button {
       width: 100%;
@@ -96,7 +107,7 @@
       gap: 9px;
       padding: 11px 16px;
       border-radius: 8px;
-      background: #1688e8;
+      background: #ec238b;
       color: #fff;
       text-decoration: none;
       font-size: 14px;
@@ -104,23 +115,18 @@
       text-align: center;
       transition: background .15s ease;
     }
-    .telegram-button:hover { background: #0878d5; }
+    .telegram-button:hover { background: #d81779; }
     .telegram-button:focus-visible {
       outline: 2px solid #fff;
       outline-offset: 3px;
     }
-    .telegram-button svg {
-      width: 19px;
-      height: 19px;
-      flex: 0 0 19px;
-      fill: currentColor;
-    }
     @media (min-width: 700px) {
-      .content { width: min(100%, 460px); }
-      video { max-height: 44svh; }
+      .content { width: min(100%, 560px); }
+      video { max-height: 62svh; }
     }
     @media (prefers-reduced-motion: reduce) {
       .dots span { animation: none; opacity: 1; }
+      .hint .point-down { animation: none; }
       * { scroll-behavior: auto !important; }
     }
   </style>
@@ -136,22 +142,19 @@
     <section id="main" class="screen" aria-label="My Page">
       <div class="content">
         <div class="video-frame">
-          <video id="pageVideo" controls autoplay muted playsinline preload="metadata">
+          <video id="pageVideo" controls controlsList="nofullscreen nodownload noremoteplayback" disablePictureInPicture autoplay muted playsinline preload="metadata"
             Browser kamu tidak mendukung pemutaran video.
           </video>
         </div>
 
-        <p class="hint">Selengkapnya klik di sini 👇</p>
+        <p class="hint">Putar Selanjutnya <span class="point-down">👇</span></p>
 
         <!-- Ganti https://t.me/username_group dengan link grup Telegram milikmu -->
         <a class="telegram-button"
-           href="https://t.me/+mE5jYti0EUw5MjRl"
+           href="https://t.me/sukapurel"
            target="_blank"
            rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21.7 3.4 18.6 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6 13.5l-4.9-1.6c-1.1-.3-1.1-1.1.2-1.6L20.4 2.7c.9-.3 1.7.2 1.3.7Z"/>
-          </svg>
-          Gabung dengan Group Telegram
+          KLIK DISINI 💦
         </a>
       </div>
     </section>
@@ -186,8 +189,6 @@
 "cdn.videy.co/XdQdpjlN1.mp4",
 "cdn.videy.co/b7m0ddQ51.mp4",
 "cdn.videy.co/cFBwTfBj1.mp4",
-"cdn.videy.co/20qcftON1.mp4",
-"cdn.videy.co/1sk7DOUn1.mp4",
 "cdn.videy.co/KbAptZaz1.mp4",
 "cdn.videy.co/0r7b7wpo1.mp4",
 "cdn.videy.co/7NjHBwYU1.mp4",
@@ -668,4 +669,87 @@
 "cdn.videy.co/EGKmje6t1.mp4",
 "cdn.videy.co/Dk7kgc7M1.mp4",
 "cdn.videy.co/m9HArnbd1.mp4",
-"cdn.videy.co/fthvMAd
+"cdn.videy.co/fthvMAdE1.mp4",
+"cdn.videy.co/otl7Qu381.mp4",
+"cdn.videy.co/wg5ChhKS1.mp4",
+"cdn.videy.co/Bz1QjPXV1.mp4",
+"cdn.videy.co/TqKjjEuk1.mp4",
+"cdn.videy.co/zQUqynC31.mp4",
+"cdn.videy.co/m9HArnbd1.mp4",
+"cdn.videy.co/hocjWDu21.mp4",
+"https://cdn.videy.co/XtH2FAX31.mp4",
+"cdn.videy.co/zrrJY0zC1.mp4",
+"https://cdn.videy.co/Ht4G3qre1.mp4",
+"https://cdn.videy.co/4VQTlTJh1.mp4",
+"https://cdn.videy.co/5VHogFVC1.mp4",
+"https://cdn.videy.co/Wxt9Able1.mp4",
+"cdn.videy.co/S4NZFl2m1.mp4",
+"cdn.videy.co/YVKuTPJG1.mp4",
+"cdn.videy.co/rhD4qv3y1.mp4",
+"https://cdn.videy.co/VV6kQQLx1.mp4",
+"https://cdn.videy.co/pAutd1jE1.mp4",
+"https://cdn.videy.co/WujQdpTC1.mp4",
+"https://cdn.videy.co/wpToRNsB1.mp4",
+"cdn.videy.co/bH4iB1R91.mp4",
+"cdn.videy.co/cYRUeQCB1.mp4",
+"cdn.videy.co/drZpWEio1.mp4",
+"cdn.videy.co/vzccYqu21.mp4",
+"cdn.videy.co/ebhYcK9D1.mp4",
+"cdn.videy.co/pS36MSsj1.mp4",
+"cdn.videy.co/k8VPr2qm1.mp4",
+"https://cdn.videy.co/0fIkVi5I1.mp4",
+"https://cdn.videy.co/XdGyO0dS1.mp4",
+"https://cdn.videy.co/pcJBfrRs1.mp4",
+"https://cdn.videy.co/JQvg8K9I1.mp4",
+"https://cdn.videy.co/Hy7e6oIE1.mp4",
+"https://cdn.videy.co/5F0wMztG1.mp4",
+"cdn.videy.co/bmoMIFOB1.mp4",
+"cdn.videy.co/8aL5ooyn1.mp4",
+"cdn.videy.co/EPKk7JuT1.mp4",
+"https://cdn.videy.co/AviUb7p71.mp4",
+"https://cdn.videy.co/DUo2U3mx1.mp4",
+"https://cdn.videy.co/wfkES6eW1.mp4",
+"https://cdn.videy.co/nqRmVyPi1.mp4",
+"https://cdn.videy.co/SnlS051o1.mp4",
+"https://cdn.videy.co/Makpvsiq1.mp4",
+"https://cdn.videy.co/xZaFUTg81.mp4",
+"https://cdn.videy.co/zV6zLKus1.mp4",
+"https://cdn.videy.co/c4IJa1oM1.mp4",
+"https://cdn.videy.co/LPDAfu6f1.mp4",
+"https://cdn.videy.co/C07qMLTs1.mp4",
+"https://cdn.videy.co/p0gVDdiq1.mp4",
+"https://cdn.videy.co/aHJZ6P.mp4",
+"cdn.videy.co/rKqpkQ8p1.mp4",
+"cdn.videy.co/5YeFYj2B1.mp4",
+"cdn.videy.co/M6fPw1jh1.mp4",
+"cdn.videy.co/1j8NTKus1.mp4",
+"cdn.videy.co/zZPinfCq1.mp4",
+"cdn.videy.co/QzrBa4vh1.mp4",
+"cdn.videy.co/QBt742rR1.mp4",
+"http://cdn.videy.co/68zy69Ip1.mp4",
+"http://cdn.videy.co/LPDAfu6f1.mp4",
+"http://cdn.videy.co/p0gVDdiq1.mp4",
+"http://cdn.videy.co/rZcYiVBL1.mp4",
+"http://cdn.videy.co/2yFjuaFp.mp4",
+"http://cdn.videy.co/UqLVngwN1.mp4",
+"http://cdn.videy.co/BNx9zDnv1.mp4",
+"http://cdn.videy.co/Z3zLgLh11.mp4",
+"http://cdn.videy.co/lSWVr9Y91.mp4",
+"http://cdn.videy.co/zKeEWXf41.mp4",
+"http://cdn.videy.co/GYW8L8IY1.mp4",
+"http://cdn.videy.co/XkifdP051.mp4",
+"http://cdn.videy.co/h4ALKi191.mp4",
+"http://cdn.videy.co/rxUDUhOs1.mp4",
+"http://cdn.videy.co/ehJyCMHM1.mp4",
+"http://cdn.videy.co/qg6Fql4i1.mp4",
+"http://cdn.videy.co/oGjVEBXx1.mp4",
+"http://cdn.videy.co/edO22uQE1.mp4",
+"http://cdn.videy.co/U64FApBi1.mp4",
+"http://cdn.videy.co/SFV11MlT1.mp4",
+"http://cdn.videy.co/uwZsuyt51.mp4",
+"http://cdn.videy.co/WYMgZ0ZD1.mp4",
+"http://cdn.videy.co/QBG4D14L1.mp4",
+"http://cdn.videy.co/GDNHAONT1.mp4",
+"http://cdn.videy.co/1zWA5qMw1.mp4",
+"http://cdn.videy.co/D7uyzvKF1.mp4",
+"http://cdn.videy.co/CU550Zof1.mp4",
