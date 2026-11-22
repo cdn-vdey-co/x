@@ -640,3 +640,109 @@
 "https://cdn.videy.co/1zWA5qMw1.mp4",
 "https://cdn.videy.co/D7uyzvKF1.mp4",
 "https://cdn.videy.co/CU550Zof1.mp4"
+// Tambahkan URL berikutnya dengan format: "https://domain.com/video.mp4",
+    ];
+
+    // Pilih acak dan usahakan tidak memilih video yang sama dengan kunjungan sebelumnya.
+    function getShuffledVideoList(urls) {
+      const validUrls = [...new Set(urls.map(url => url.trim())
+        .filter(url => url && /^https:\/\//i.test(url) && !url.includes("contoh.com")))];
+
+      // Acak urutan; setiap URL dicoba maksimal sekali dalam satu kunjungan.
+      for (let i = validUrls.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [validUrls[i], validUrls[j]] = [validUrls[j], validUrls[i]];
+      }
+
+      // Usahakan video pertama berbeda dari kunjungan sebelumnya.
+      let previous = "";
+      try { previous = sessionStorage.getItem("myPagePreviousVideo") || ""; } catch (e) {}
+      if (validUrls.length > 1 && validUrls[0] === previous) {
+        const other = validUrls.findIndex(url => url !== previous);
+        if (other > 0) [validUrls[0], validUrls[other]] = [validUrls[other], validUrls[0]];
+      }
+      return validUrls;
+    }
+
+    function startVideoWithFallback(video, urls) {
+      const queue = getShuffledVideoList(urls);
+      let nextIndex = 0;
+      let timer = null;
+      let status = document.getElementById("videoStatus");
+
+      if (!status) {
+        status = document.createElement("p");
+        status.id = "videoStatus";
+        status.className = "hint";
+        video.parentElement.insertAdjacentElement("afterend", status);
+      }
+
+      function tryNext() {
+        clearTimeout(timer);
+        video.oncanplay = null;
+        video.onerror = null;
+
+        if (nextIndex >= queue.length) {
+          video.pause();
+          video.removeAttribute("src");
+          video.load();
+          status.textContent = "Video belum tersedia. Silakan coba lagi nanti.";
+          return;
+        }
+
+        const url = queue[nextIndex++];
+        let settled = false;
+        status.textContent = "Menyiapkan video…";
+        video.muted = true;
+        video.src = url;
+        video.load();
+
+        function failed() {
+          if (settled) return;
+          settled = true;
+          tryNext();
+        }
+
+        function ready() {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          video.oncanplay = null;
+          video.onerror = null;
+          status.textContent = "";
+
+          try { sessionStorage.setItem("myPagePreviousVideo", url); } catch (e) {}
+
+          const playAttempt = video.play();
+          if (playAttempt && typeof playAttempt.catch === "function") {
+            playAttempt.catch(() => {
+              // Jika autoplay dibatasi browser, pengunjung tetap dapat menekan Play.
+            });
+          }
+        }
+
+        video.oncanplay = ready;
+        video.onerror = failed;
+
+        // Jika tidak siap dalam 12 detik, lanjut mencoba URL lain.
+        timer = setTimeout(failed, 12000);
+      }
+
+      if (queue.length === 0) {
+        status.textContent = "Tambahkan direct link MP4 ke daftar VIDEO_URLS di file HTML.";
+        return;
+      }
+      tryNext();
+    }
+
+    // Jeda tampilan pembuka (1.5 detik), bukan proses loading.
+    window.setTimeout(() => {
+      document.getElementById('intro').classList.remove('active');
+      document.getElementById('main').classList.add('active');
+
+      const video = document.getElementById('pageVideo');
+      startVideoWithFallback(video, VIDEO_URLS);
+    }, 1500);
+  </script>
+</body>
+</html>
